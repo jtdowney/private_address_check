@@ -9,6 +9,7 @@ module PrivateAddressCheck
   CIDR_LIST = [
     # Loopback
     IPAddr.new("127.0.0.0/8"),
+    IPAddr.new("::1/64"),
 
     # Link Local,
     IPAddr.new("169.254.0.0/16"),

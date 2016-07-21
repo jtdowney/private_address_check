@@ -20,6 +20,7 @@ class PrivateAddressCheckTest < Minitest::Test
   def test_private_address_for_loopback_addresses
     assert PrivateAddressCheck.private_address?("127.0.0.1")
     assert PrivateAddressCheck.private_address?("127.2.2.2")
+    assert PrivateAddressCheck.private_address?("::1")
   end
 
   def test_private_address_for_link_local_addresses
