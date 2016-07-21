@@ -25,6 +25,8 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
+require "private_address_check"
+
 PrivateAddressCheck.private_address?("8.8.8.8") # => false
 PrivateAddressCheck.private_address?("10.10.10.2") # => true
 PrivateAddressCheck.private_address?("127.0.0.1") # => true
@@ -33,6 +35,17 @@ PrivateAddressCheck.private_address?("192.168.1.10") # => true
 PrivateAddressCheck.private_address?("fd00::2") # => true
 PrivateAddressCheck.resolves_to_private_address?("github.com") # => false
 PrivateAddressCheck.resolves_to_private_address?("localhost") # => true
+
+require "private_address_check/tcpsocket_ext"
+require "net/http"
+require "require "uri""
+
+Net::HTTP.get_response(URI.parse("http://192.168.1.1")) # => attempts connection like normal
+
+PrivateAddressCheck.only_public_connections do
+  Net::HTTP.get_response(URI.parse("http://192.168.1.1"))
+end
+# => raises PrivateAddressCheck::PrivateConnectionAttemptedError
 ```
 
 ## Development
