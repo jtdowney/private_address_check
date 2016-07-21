@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["John Downey"]
   spec.email         = ["jdowney@gmail.com"]
 
-  spec.summary       = %q{Checks if a URL or hostname would cause a request to a private network (RFC 1918)}
-  spec.description   = %q{Checks if a URL or hostname would cause a request to a private network (RFC 1918)}
+  spec.summary       = %q{Prevent Server Side Request Forgery attacks by checking the destination}
+  spec.description   = %q{Checks if a IP or hostname would cause a request to a private network (RFC 1918)}
   spec.homepage      = "https://github.com/jtdowney/private_address_check"
   spec.license       = "MIT"
 
