@@ -2,6 +2,10 @@
 
 Checks if a URL or hostname would cause a request to a private network (RFC 1918). This is useful in preventing attacks like [Server Side Request Forgery](https://cwe.mitre.org/data/definitions/918.html).
 
+## Requirements
+
+* Ruby >= 2.0
+
 ## Installation
 
 Add this line to your application's Gemfile:
