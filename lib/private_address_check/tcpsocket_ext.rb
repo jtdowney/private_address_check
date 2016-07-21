@@ -26,4 +26,4 @@ module PrivateAddressCheck
   end
 end
 
-TCPSocket.prepend(PrivateAddressCheck::TCPSocketExt)
+TCPSocket.send(:prepend, PrivateAddressCheck::TCPSocketExt)
