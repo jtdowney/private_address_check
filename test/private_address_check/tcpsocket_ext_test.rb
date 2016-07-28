@@ -19,4 +19,12 @@ class TCPSocketExtTest < Minitest::Test
 
     assert connected
   end
+
+  def test_invalid_domain
+    assert_raises SocketError do
+      PrivateAddressCheck.only_public_connections do
+        TCPSocket.new("not_a_domain", 80)
+      end
+    end
+  end
 end
