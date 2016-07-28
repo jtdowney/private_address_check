@@ -41,7 +41,7 @@ PrivateAddressCheck.resolves_to_private_address?("localhost") # => true
 
 require "private_address_check/tcpsocket_ext"
 require "net/http"
-require "require "uri""
+require "uri"
 
 Net::HTTP.get_response(URI.parse("http://192.168.1.1")) # => attempts connection like normal
 
