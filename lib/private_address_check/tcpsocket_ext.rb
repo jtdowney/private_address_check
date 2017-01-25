@@ -12,15 +12,11 @@ module PrivateAddressCheck
 
   module TCPSocketExt
     def initialize(remote_host, remote_port, local_host = nil, local_port = nil)
-      if Thread.current[:private_address_check]
-        if PrivateAddressCheck.resolves_to_private_address?(remote_host)
-          raise PrivateAddressCheck::PrivateConnectionAttemptedError
-        end
-
-        super(remote_host, remote_port, local_host, local_port)
-      else
-        super
+      if Thread.current[:private_address_check] && PrivateAddressCheck.resolves_to_private_address?(remote_host)
+        raise PrivateAddressCheck::PrivateConnectionAttemptedError
       end
+
+      super
     end
   end
 end
