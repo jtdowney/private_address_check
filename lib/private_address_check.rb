@@ -31,6 +31,8 @@ module PrivateAddressCheck
 
   def resolves_to_private_address?(hostname)
     ips = Resolv.getaddresses(hostname)
+    return true if ips.empty?
+
     ips.any? do |ip| 
       private_address?(ip)
     end

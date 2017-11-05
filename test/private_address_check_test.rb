@@ -35,4 +35,8 @@ class PrivateAddressCheckTest < Minitest::Test
   def test_private_hostname_for_private_addresses
     assert PrivateAddressCheck.resolves_to_private_address?("localhost")
   end
+
+  def test_private_address_for_malformed_addresses
+    assert PrivateAddressCheck.resolves_to_private_address?("127.1")
+  end
 end
