@@ -1,5 +1,5 @@
 require "ipaddr"
-require "resolv"
+require "socket"
 
 require "private_address_check/version"
 
@@ -30,7 +30,7 @@ module PrivateAddressCheck
   end
 
   def resolves_to_private_address?(hostname)
-    ips = Resolv.getaddresses(hostname)
+    ips = Socket.getaddrinfo(hostname, nil).map { |info| IPAddr.new(info[3]) }
     return true if ips.empty?
 
     ips.any? do |ip| 
