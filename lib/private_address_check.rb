@@ -7,20 +7,33 @@ module PrivateAddressCheck
   module_function
 
   CIDR_LIST = [
-    # Loopback
     IPAddr.new("127.0.0.0/8"),
-    IPAddr.new("::1/64"),
-
-    # Link Local,
+    IPAddr.new("::1/128"),
+    IPAddr.new('0.0.0.0/8'),
     IPAddr.new("169.254.0.0/16"),
-
-    # RFC 1918
     IPAddr.new("10.0.0.0/8"),
-    IPAddr.new("172.16.0.0/12"),
-    IPAddr.new("192.168.0.0/16"),
-
-    # RFC 4193
-    IPAddr.new("fc00::/7"),
+    IPAddr.new('100.64.0.0/10'),
+    IPAddr.new('172.16.0.0/12'),
+    IPAddr.new('192.0.0.0/24'),
+    IPAddr.new('192.0.2.0/24'),
+    IPAddr.new('192.88.99.0/24'),
+    IPAddr.new('192.168.0.0/16'),
+    IPAddr.new('198.18.0.0/15'),
+    IPAddr.new('198.51.100.0/24'),
+    IPAddr.new('203.0.113.0/24'),
+    IPAddr.new('224.0.0.0/4'),
+    IPAddr.new('240.0.0.0/4'),
+    IPAddr.new('255.255.255.255'),
+    IPAddr.new('64:ff9b::/96'),
+    IPAddr.new('100::/64'),
+    IPAddr.new('2001::/32'),
+    IPAddr.new('2001:10::/28'),
+    IPAddr.new('2001:20::/28'),
+    IPAddr.new('2001:db8::/32'),
+    IPAddr.new('2002::/16'),
+    IPAddr.new('fc00::/7'),
+    IPAddr.new('fe80::/10'),
+	  IPAddr.new('ff00::/8')
   ]
 
   def private_address?(address)
