@@ -6,6 +6,9 @@ require "private_address_check/version"
 module PrivateAddressCheck
   module_function
 
+module PrivateAddressCheck
+  module_function
+
   CIDR_LIST = [
     IPAddr.new("127.0.0.0/8"),
     IPAddr.new("::1/128"),
@@ -31,9 +34,9 @@ module PrivateAddressCheck
     IPAddr.new('2001:20::/28'),
     IPAddr.new('2001:db8::/32'),
     IPAddr.new('2002::/16'),
-    IPAddr.new('fc00::/7'),
+    IPAddr.new('fc00::/7')
     IPAddr.new('fe80::/10'),
-	  IPAddr.new('ff00::/8')
+    IPAddr.new('ff00::/8')
   ]
 
   def private_address?(address)
