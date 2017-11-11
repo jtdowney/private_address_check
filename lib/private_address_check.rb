@@ -6,9 +6,6 @@ require "private_address_check/version"
 module PrivateAddressCheck
   module_function
 
-module PrivateAddressCheck
-  module_function
-
   CIDR_LIST = [
     IPAddr.new("127.0.0.0/8"),
     IPAddr.new("::1/128"),
