@@ -6,7 +6,8 @@ require "private_address_check/version"
 module PrivateAddressCheck
   module_function
 
-  # https://en.wikipedia.org/wiki/Reserved_IP_addresses
+  # https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
+  # https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml
   CIDR_LIST = [
     IPAddr.new("127.0.0.0/8"),     # Loopback
     IPAddr.new("::1/128"),         # Loopback
