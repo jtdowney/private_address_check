@@ -3,11 +3,15 @@ require 'private_address_check/tcpsocket_ext'
 
 class TCPSocketExtTest < Minitest::Test
   def test_private_address
+    server = TCPServer.new(63453)
+    thread = Thread.start { server.accept }
     assert_raises PrivateAddressCheck::PrivateConnectionAttemptedError do
       PrivateAddressCheck.only_public_connections do
-        TCPSocket.new("localhost", 80)
+        TCPSocket.new("localhost", 63453)
       end
     end
+  ensure
+    thread.exit if thread
   end
 
   def test_public_address

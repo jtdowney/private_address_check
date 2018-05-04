@@ -61,8 +61,18 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/jtdowney/private_address_check. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
+## Security
+
+If you've found a security issue in `private_address_check`, please reach out to @jtdowney via email to report.
+
+### Time of check to time of use
+
+A library like `private_address_check` is going to be easily susceptible to attacks like [time of check to time of use](https://en.wikipedia.org/wiki/Time_of_check_to_time_of_use). DNS entries with a TTL of 0 can trigger this case where the initial resolution is a public address by the subsequent resolution is a private address. There are some possible defenses and workarounds:
+
+- Use the TCPSocket extension in this library which checks the address the socket uses. This is most useful if your system is built on native Ruby like Net::HTTP.
+- Use a feature like the `resolve` capability in curl and [curb](https://www.rubydoc.info/github/taf2/curb/Curl/Easy#resolve=-instance_method) to force the resolution to a pre-checked IP address.
+- Implement your own caching DNS resolver with something like dnsmasq or unbound. These tools let you set a minimum cache time that can override the TTL of 0.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
