@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class PrivateAddressCheckTest < Minitest::Test
   def test_private_address_for_public_addresses

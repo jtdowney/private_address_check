@@ -12,7 +12,7 @@ module PrivateAddressCheck
 end
 
 TCPSocket.class_eval do
-  alias initialize_without_private_address_check initialize
+  alias_method :initialize_without_private_address_check, :initialize
 
   def initialize(*args)
     initialize_without_private_address_check(*args)

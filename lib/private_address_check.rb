@@ -36,10 +36,10 @@ module PrivateAddressCheck
     IPAddr.new("fc00::/7"),        # Unique local address
     IPAddr.new("fe80::/10"),       # Link-local address
     IPAddr.new("ff00::/8")         # Multicast
-  ]
+  ].freeze
 
   def private_address?(address)
-    CIDR_LIST.any? do |cidr| 
+    CIDR_LIST.any? do |cidr|
       cidr.include?(address)
     end
   end
@@ -48,7 +48,7 @@ module PrivateAddressCheck
     ips = Socket.getaddrinfo(hostname, nil).map { |info| IPAddr.new(info[3]) }
     return true if ips.empty?
 
-    ips.any? do |ip| 
+    ips.any? do |ip|
       private_address?(ip)
     end
   end
