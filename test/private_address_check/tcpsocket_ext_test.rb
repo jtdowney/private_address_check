@@ -1,5 +1,7 @@
 require "test_helper"
 require "private_address_check/tcpsocket_ext"
+require "net/http"
+require "uri"
 
 class TCPSocketExtTest < Minitest::Test
   def test_private_address
@@ -12,6 +14,14 @@ class TCPSocketExtTest < Minitest::Test
     end
   ensure
     thread.exit if thread
+  end
+
+  def test_http_request
+    assert_raises PrivateAddressCheck::PrivateConnectionAttemptedError do
+      PrivateAddressCheck.only_public_connections do
+        Net::HTTP.get_response(URI.parse("http://192.168.1.1"))
+      end
+    end
   end
 
   def test_public_address
