@@ -14,10 +14,23 @@ end
 TCPSocket.class_eval do
   alias_method :initialize_without_private_address_check, :initialize
 
-  def initialize(*args)
-    initialize_without_private_address_check(*args)
-    if Thread.current[:private_address_check] && PrivateAddressCheck.resolves_to_private_address?(remote_address.ip_address)
-      raise PrivateAddressCheck::PrivateConnectionAttemptedError
+  def initialize(remote_host, remote_port, local_host = nil, local_port = nil)
+    begin
+      initialize_without_private_address_check(remote_host, remote_port, local_host, local_port)
+    rescue Errno::ECONNREFUSED, SocketError
+      private_address_check! remote_host
+      raise
     end
+
+    private_address_check! remote_address.ip_address
+  end
+
+  private
+
+  def private_address_check!(address)
+    return unless Thread.current[:private_address_check]
+    return unless PrivateAddressCheck.resolves_to_private_address?(address)
+
+    raise PrivateAddressCheck::PrivateConnectionAttemptedError
   end
 end
