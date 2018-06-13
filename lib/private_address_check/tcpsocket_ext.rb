@@ -12,13 +12,19 @@ module PrivateAddressCheck
 end
 
 TCPSocket.class_eval do
+
+  EXCEPTION_WHITELIST = []
+
   alias_method :initialize_without_private_address_check, :initialize
 
   def initialize(remote_host, remote_port, local_host = nil, local_port = nil)
     begin
       initialize_without_private_address_check(remote_host, remote_port, local_host, local_port)
-    rescue Errno::ECONNREFUSED, SocketError
-      private_address_check! remote_host
+    rescue => e
+      unless EXCEPTION_WHITELIST.include? e.class
+        private_address_check! remote_host
+      end
+
       raise
     end
 
