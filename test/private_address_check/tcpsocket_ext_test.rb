@@ -31,4 +31,12 @@ class TCPSocketExtTest < Minitest::Test
       end
     end
   end
+
+  def test_private_address_not_running
+    assert_raises PrivateAddressCheck::PrivateConnectionAttemptedError do
+      PrivateAddressCheck.only_public_connections do
+        TCPSocket.new("localhost", 1234567)
+      end
+    end
+  end
 end
