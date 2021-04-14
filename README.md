@@ -1,6 +1,6 @@
 # PrivateAddressCheck
 
-[![Build Status](https://travis-ci.org/jtdowney/private_address_check.svg?branch=main)](https://travis-ci.org/jtdowney/private_address_check)
+[![CI](https://github.com/jtdowney/private_address_check/actions/workflows/ci.yml/badge.svg)](https://github.com/jtdowney/private_address_check/actions/workflows/ci.yml)
 [![Code Climate](https://codeclimate.com/github/jtdowney/private_address_check/badges/gpa.svg)](https://codeclimate.com/github/jtdowney/private_address_check)
 
 Checks if a URL or hostname would cause a request to a private network (RFC 1918). This is useful in preventing attacks like [Server Side Request Forgery](https://cwe.mitre.org/data/definitions/918.html).
