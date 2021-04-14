@@ -7,7 +7,7 @@ Checks if a URL or hostname would cause a request to a private network (RFC 1918
 
 ## Requirements
 
-* Ruby >= 2.0
+- Ruby >= 2.4
 
 ## Installation
 
