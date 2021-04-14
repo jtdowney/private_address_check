@@ -1,5 +1,10 @@
+require:
+  - rubocop-minitest
+  - rubocop-rake
+
 AllCops:
   TargetRubyVersion: 2.4
+  NewCops: enable
   Include:
     - Gemfile
     - Rakefile
@@ -8,11 +13,11 @@ Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
 Metrics/BlockLength:
-  ExcludedMethods:
+  IgnoredMethods:
     - describe
     - task
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 160
 
 Style/Documentation:
