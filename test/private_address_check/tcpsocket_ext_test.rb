@@ -31,4 +31,18 @@ class TCPSocketExtTest < Minitest::Test
       end
     end
   end
+
+  # Ruby 4 added an open_timeout kwarg to TCPSocket.new/open.
+  # This is the same check used in https://github.com/ruby/net-http/blob/d7103a1b2c48addb22f87e8ad6713fa4e4f931c4/lib/net/http.rb#L1783
+  if Socket.method(:tcp).parameters.include?([:key, :open_timeout])
+    def test_public_address_with_timeout
+      connected = false
+      PrivateAddressCheck.only_public_connections do
+        TCPSocket.new("example.com", 80, open_timeout: 30)
+        connected = true
+      end
+
+      assert connected
+    end
+  end
 end
