@@ -1,3 +1,5 @@
+require "private_address_check"
+
 module PrivateAddressCheck
   PrivateConnectionAttemptedError = Class.new(StandardError)
 
